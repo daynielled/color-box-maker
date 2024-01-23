@@ -1,16 +1,17 @@
 import React from "react";
+import "./Box.css";
 
-function Box({ width = 500, height = 500, backgroundColor = 'red', onRemove }) {
+function Box({ width, height, backgroundColor, onRemove }) {
     const boxStyle = {
-        width,
-        height,
+        height: `${height}em`,
+        width: `${width}em`,
         backgroundColor
     }
     return (
         <div style={boxStyle}>
-            <button onClick={onRemove}>X</button>
+            <button onClick={onRemove}> X </button>
         </div>
-    )
+    );
 }
 
 export default Box;

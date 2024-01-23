@@ -4,31 +4,34 @@ import NewBoxForm from "./NewBoxForm";
 
 
 function BoxList() {
-    const[boxes, setBoxes]= useState([]);
-    
- const addBox=(newBox) => {
+  const [boxes, setBoxes] = useState([]);
+
+  const addBox = (newBox) => {
     setBoxes((prevBoxes) => [...prevBoxes, newBox]);
- };
+  };
 
- const removeBox=(index) => {
-    setBoxes((prevBoxes) => {
-        const newBoxes = [...prevBoxes];
-        newBoxes.splice(index,1);
-        return newBoxes
-    });
- };
+  const removeBox = (id) => {
+    setBoxes((prevBoxes) => prevBoxes.filter((box) => box.id !== id));
+  };
 
-return(
+  return (
     <div>
-        <NewBoxForm addBox={addBox} />
-        <Box
-        width={Box.width}
-        height={Box.height}
-        backgroundColor={Box.backgroundColor}
-        onRemove={removeBox}
-         />
+      <NewBoxForm addBox={addBox} />
+      <div className="box-container">
+        {boxes.map((box) => (
+          <Box
+            key={box.id}
+            id={box.id}
+            width={box.width}
+            height={box.height}
+            backgroundColor={box.backgroundColor}
+            onRemove={() => removeBox(box.id)}
+          />
+        ))}
+      </div>
     </div>
-)
+
+  );
 }
 
 export default BoxList;
