@@ -20,6 +20,7 @@ function BoxList() {
 
 return(
     <div>
+        <NewBoxForm addBox={addBox} />
         <Box
         width={Box.width}
         height={Box.height}
